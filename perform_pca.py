@@ -8,6 +8,7 @@
     #   for each example.                                                            #   
     ##------------------------------------------------------------------------------##
 
+import argparse
 import numpy as np
 import cPickle
 import re
@@ -109,14 +110,14 @@ def standard_PCA(path_to_pkl, nb_elements, output_name):
     print "----> Nb of components after PCA: ", nb_elements
 
     encDict             = open_encodings_pkl(path_to_pkl)
-    encMatrix, key_list = encoding_matrix(encDict)
+    encMatrix, key_list = build_encoding_matrix(encDict)
     resultMatrix        = perform_pca(encMatrix, nb_elements)
-    rebuiltDict         = rebuild_dict(resultMAtrix, key_list)
+    rebuiltDict         = rebuild_dict(resultMatrix, key_list)
     
-    save_dict(rebuiltDict,outputName)
+    save_dict(rebuiltDict,output_name)
     print  "----> All done."
 
-def main()
+def main():
     
     args = parse_args()
    
